@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="container mx-auto">
+    <header>
+        <h1 class="text-6xl text-center mb-7 mt-8 font-medium">Let's get some <span class="font-semibold text-purple-500">Moooony</span></h1>
+    </header>
+    <main>
+        <section class="mt-12">
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-green-500 p-8 text-white rounded-xl">
+                    <h1 class="text-3xl mb-2">Deposit</h1>
+                    <p  class="text-5xl">$<span id="deposit">00</span></p>
+                </div>
+                <div class="bg-yellow-500 p-8 text-white rounded-xl">
+                    <h1 class="text-3xl mb-2">Withdraw</h1>
+                    <p  class="text-5xl">$<span id="withdraw">00</span></p>
+                </div>
+                <div class="bg-violet-500 p-8 text-white rounded-xl">
+                    <h1 class="text-3xl mb-2">Balance</h1>
+                    <p  class="text-5xl">$<span id="balance">1240</span></p>
+                    
+
+                </div>
+            </div>
+        </section>
+        
+
+
+        <section class="mt-12">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-fuchsia-500 pl-8 
+                py-7 text-white rounded-xl">
+                    <h1 class="text-4xl mb-2">Please Deposit</h1>
+                  <div class="px-10 py-5">
+                    <input id="user-deposit" class="w-9/12 block px-5 py-2 text-black outline-blue-500 border-indigo-800 rounded-lg border-2 " type="text" placeholder="The amount you want to deposit">
+                    <button  id="btn-deposit" class="border-none px-4 py-2 bg-white text-black text-xl mt-5 rounded hover:bg-orange-600  hover:text-white hover:shadow-xl">Deposit</button>
+                  </div>
+                       
+                </div>
+                
+                <div class="bg-indigo-500 px-8 
+                py-7 text-white rounded-xl">
+                    <h1 class="text-4xl mb-2">Please Withdraw</h1>
+                    <div class="px-10 py-5">
+                        <input id="user-withdraw" class="w-9/12 block px-5 py-2 text-black border-2 rounded-lg outline-blue-500 border-blue-950" type="text" placeholder="The amount you want to withdraw">
+                        <button  id="btn-withdraw" class="border-none px-4 py-2 bg-white text-black text-xl mt-5 rounded hover:bg-orange-600  hover:text-white hover:shadow-xl">Withdraw</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <script>
+
+
+document.getElementById('btn-deposit').addEventListener('click', function(){
+    const depositfield = document.getElementById('user-deposit');
+   const depositAmount = depositfield.value
+   if(depositAmount == ''){
+      alert('Please enter the amount')
+      return
+   }
+   
+   depositfield.value = ''
+   const balance = document.getElementById('balance')
+   const deposit = document.getElementById('deposit')
+   const previousDepositTotal = deposit.innerText
+   if(parseFloat(depositAmount) <= 0){
+      alert('Enter a positive amount')
+      return
+   }
+   const total = parseFloat(depositAmount) + parseFloat(previousDepositTotal)
+   deposit.innerText = total
+
+   
+   balance.innerText = parseFloat(depositAmount) + parseFloat(balance.innerText)
+
+
+   depositfield.value = ''
+})
+
+
+document.getElementById('btn-withdraw').addEventListener('click', function(){
+        const withdrawfield = document.getElementById('user-withdraw');
+        const newwithdraw = withdrawfield.value
+        const balance = document.getElementById('balance')
+        if(newwithdraw == ''){
+           alert('Please enter the amount')
+           return
+        }
+        
+        withdrawfield.value = ''
+
+        const newwithdrawamount = parseFloat(newwithdraw)
+
+       const previousWithdrawTotal = document.getElementById('withdraw');
+       if(newwithdrawamount > parseFloat(balance.innerText)){
+           alert('Not enough balance')
+           return
+       }
+
+       const currentwithdraw = parseFloat(previousWithdrawTotal.innerText) + parseFloat(newwithdrawamount)
+       previousWithdrawTotal.innerText = currentwithdraw
+       
+       
+   balance.innerText =  parseFloat(balance.innerText) - parseFloat(newwithdrawamount)
+
+
+})
+
+
+    </script>
+</body>
+</html>

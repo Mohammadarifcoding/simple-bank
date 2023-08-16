@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baap ar bank</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+
+    </style>
+  </head>
+  <body>
+
+    <header>
+      <h1 class="text-6xl text-center mb-7 mt-8 font-medium">welcome our <span class="font-semibold text-purple-500">Baper Bank</span></h1>
+  </header>
+  <section class="mt-8 bg-teal-600 p-8 w-9/12 mx-auto">
+      <h1 class="text-4xl mb-4 text-white font-semibold">Please Login </h1>
+      <div>
+          <input id="user-email" class="w-9/12 block px-5 py-2 mb-2 border-none outline-none" type="text" placeholder="Enter your email address">
+          <input id="user-password" type="password"  class="w-9/12 block px-5 py-2  mb-2 border-none outline-none"  placeholder="Enter your password">
+      </div>
+      <button  id="btn-submit" class="border-none px-4 py-2 bg-white text-xl mt-5 rounded text-gray-500 hover:bg-gray-400 hover:text-white">submit</button>
+  </section>
+  
+  <div id="modal" class="bg-white p-6 flex-col hidden rounded justify-center items-center space-y-5 text-gray-800 shadow-2xl w-96 h-auto absolute left-[35%] right-[35%] top-[30%]">
+    <img src="incorrect.svg" alt="" class="mx-auto w-20" >
+    <h1 class="text-4xl font-semibold text-gray-700">Oops..</h1>
+    <h1 class="text-xl font-medium text-gray-700">Something went wrong</h1>
+    <button id="close-btn" class="btn bg-blue-600 text-white hover:text-blue-600 hover:bg-white">close</button>
+
+  </div>
+  
+
+    <script>
+        document.getElementById('btn-submit').addEventListener('click', function(){
+          let email = document.getElementById('user-email')
+          let password = document.getElementById('user-password')
+          let overlay = document.getElementById('overlay')
+
+          if((email.value.endsWith('@gmail.com')) && password.value == "123"){
+            alert("User signed in succesfully")
+           return window.location.href = "dom2.html"
+
+          }
+          else{
+           document.getElementById('modal').style.display = "flex"
+           
+           document.getElementById('close-btn').addEventListener('click', function(){
+           document.getElementById('modal').style.display = "none" 
+           })
+          }   
+        }
+        )
+
+    </script>
+  </body>
+</html>
+
